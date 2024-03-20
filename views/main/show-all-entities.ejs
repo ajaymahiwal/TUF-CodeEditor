@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUF's Army Submitted Data</title>
+    <link rel="shortcut icon" href="/img/tuf.png" type="image/x-icon">
+    <link rel="stylesheet" href="/common/style.css">
+    <style>
+        main{
+            padding: 1rem 6%;
+            width: 100%;
+            overflow-x: auto;
+        }
+        table{
+            border:2px solid black;
+            width: 100%;
+        }
+        td,th{
+            word-wrap: break-word;
+            padding: 4px 5px;
+            vertical-align: top;
+        }
+        th{
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .sno{
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        .username, .code-lan{
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        .show-more{
+            display: inline-block;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+        .no-data{
+            text-align: center;
+            margin-block: 3rem;
+            font-size: 2.5rem;
+            color: #E72929;
+        }
+
+        
+        @media(width<=500px){
+            th{
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        .sno{
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .username, .code-lan{
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        }
+
+    </style>
+</head>
+<body>
+    <%-include("../components/header.ejs")  %>
+    <main>
+        <% if(result?.length > 0) {%>
+        <h1 class="headline">All Submission's</h1>
+        <table border="1" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Username</th>
+                    <th>Language</th>
+                    <th>Stdin</th>
+                    <th>Source Code</th>
+                    <th>Status</th>
+                    <th>Output</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <% for( let i = 0; i < result.length; i++ ) { %>
+                    <tr class="tuple">
+                        <td class="sno"><%= i+1 %>.</td>
+                        <td class="username"><%= result[i].username %></td>
+                        <td class="code-lan"><%= result[i].code_language %></td>
+                        <td class="stdin"><%= result[i].stdin %></td>
+                        <td class="complete-code hide"><%= result[i].source_code %>
+                        <td class="code">
+                            <div class="sourceCode-box">
+                                <%= result[i].source_code.substring(0,100) %>
+                            </div>
+                        <% if (result[i].source_code.length > 100) { %>
+                                    <a href="/" class="show-more" id="<%= i %>">Show More</a>
+                            <% } else{%>
+                             
+                            <% } %>
+                        </td>
+                        <td><%= result[i].code_status %></td>
+                        <td><%= result[i].output %></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    <% } else{%>
+        <h1 class="no-data">Ooops ! No Users Submission Present</h1>
+    <% } %>
+    </main>
+    
+
+    <script>
+        let showMore = document.getElementsByClassName("show-more");
+        let sourceCodeBox = document.getElementsByClassName("sourceCode-box");
+        
+        let tbody = document.getElementById("tbody");
+
+        tbody.addEventListener("click",(e)=>{
+            if(e.target.classList.contains("show-more")){
+                console.log(e.target)
+                e.preventDefault();
+
+                e.target.classList.toggle("clicked");
+
+                if(e.target.classList.contains("clicked")){
+                    e.target.innerText = "Show Less";
+                    let idx = e.target.id;
+                    console.log(idx)
+                    if(idx){
+                        let code = document.getElementsByClassName("complete-code")[idx].innerText;
+                        sourceCodeBox[idx].innerText = `${code}`;
+                    }
+                }else{
+                    e.target.innerText = "Show More";
+                    let idx = e.target.id;
+                    sourceCodeBox[idx].innerText = sourceCodeBox[idx].innerText.substring(0,100);
+                }
+                
+
+                
+            }
+            console.log(e.target)
+        })
+    </script>
+</body>
+</html>

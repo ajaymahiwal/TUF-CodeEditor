@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Something Went Wrong !</title>
+    <link rel="shortcut icon" href="/img/tuf.png" type="image/x-icon">
+
+    <style>
+        main {
+          padding: 3% 6%;
+          min-height: 70dvh;
+        }
+  
+        /*======================
+      404 page
+  =======================*/
+  
+        .page_404 {
+          font-family: "Arvo", serif;
+          margin: 0 auto;
+        }
+  
+        .page_404 img {
+          width: 100%;
+        }
+  
+        .four_zero_four_bg {
+          background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+          height: 400px;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+        .four_zero_four_bg h1 {
+          font-size: 4rem;
+        }
+        .text-center {
+          text-align: center;
+        }
+  
+        .link_404 {
+          color: #fff !important;
+          padding: 10px 20px;
+          background: #39ac31;
+          margin: 1.5rem 0;
+          border-radius: 7px;
+          display: inline-block;
+        }
+        
+        .contant_box_404 {
+          margin-top: -50px;
+        }
+        .err{
+            color: red;
+        }
+
+        @media (width<=400px) {
+            #headline{
+            font-size: 1.8rem;
+        }
+        }
+      </style>
+    </head>
+    <body>
+  
+      <main>
+        <section class="page_404">
+              <div>
+                <div class=" text-center">
+                  <div class="four_zero_four_bg">
+                    <h1 class="text-center imp-txt" id="headline">Something Went Wrong</h1>
+                  </div>
+  
+                  <div class="contant_box_404">
+                    <h3 class="h2">Look like you're doing Something Wrong Step !</h3>
+  
+                    <p class="err"><%= err.message %></p>
+  
+                    <a href="/" class="link_404">Go to Home</a>
+                  </div>
+                </div>
+              </div>
+        </section>
+      </main>
+  
+    </body>
+  </html>
+  

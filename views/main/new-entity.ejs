@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUF's Simple Code Editor</title>
+    <link rel="shortcut icon" href="/img/tuf.png" type="image/x-icon">
+    <link rel="stylesheet" href="/common/style.css">
+    <style>
+       main{
+        margin-block: 2rem;
+        width: 100%;
+        padding: 1rem 6% 15rem;
+        /* i created bottom padding too much because i want to give some space at the bottom of page. I can also use min-height but i am picking this padding approach */
+       }
+
+       form{
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+       }
+       form > div{
+        display: flex;
+        flex-direction: column;
+       }
+
+       input,textarea,label,select{
+        font-size: 1.1rem;
+       }
+       input,select{
+        padding: 3px 2px;
+        border: 1px solid black;
+       }
+       label{
+        font-weight: 500;
+       }
+
+        textarea{
+            resize: none;
+            border: 1px solid black;
+        }
+
+        #submit-btn{
+            font-size: 1.2rem;
+            font-weight: 500    ;
+            display: block;
+            margin: 1rem auto;
+            width: 30%;
+            padding: .4rem .5rem;
+            border-radius: 3rem;
+            border: none;
+            background-color: #E72929;
+            color: white;
+        }
+
+
+        @media(width<=500px){
+            #submit-btn{
+                width: 45%;
+            }
+            #logo{
+                font-size: 1.7rem;
+            }
+        }
+        @media(width<=350px){
+            #submit-btn{
+                width: 60%;
+            }
+            input,textarea,label,select{
+                font-size: 1rem;
+            }
+            input,select{
+            padding: 0;
+            border: 1px solid black;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    
+    <%-include("../components/header.ejs") %>
+
+    <main>
+        <form action="/new-entity" method="post" id="entity-form">
+            <div>
+                <label for="">Username:</label>
+                <input type="text" name="data[username]" id="" required maxlength="50">
+            </div>
+            <div>
+                <label for="">Language</label>
+                <select name="data[code_language]" id="" required>
+                    <option value="none" disabled selected>Please Select Your Preferred Code Language</option>
+                    <option value="cpp">C++</option>
+                    <option value="java">Java</option>
+                    <option value="javascript">JavaScript</option>
+                    <option value="python">Python</option>
+                </select>
+            </div>
+            <div>
+                <label for="">Input</label>
+                <textarea name="data[stdin]" id="" cols="30" rows="10" required></textarea>
+            </div>
+            <div>
+                <label for="">Source Code</label>
+                <textarea name="data[source_code]" id="" cols="30" rows="10" required></textarea>
+            </div>
+    
+    
+            <button id="submit-btn">Submit</button>
+        </form>
+    </main>
+
+    <script>
+        let form = document.getElementById("entity-form");
+        let submitBtn = document.getElementById("submit-btn");
+
+        form.addEventListener("submit",(e)=>{
+            submitBtn.disabled = true;
+        })
+    
+    </script>
+</body>
+</html>
