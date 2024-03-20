@@ -16,10 +16,11 @@ let client;
 async function connectWithRedis(){
     client = createClient({
         password: process.env.REDIS_PASS,
+        legacyMode: false,
         socket: {
             host: process.env.REDIS_HOST,
             port: 12021,
-            legacyMode: true,
+            connectTimeout: 10000
         }
     });
     await client.connect();
