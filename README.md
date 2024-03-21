@@ -1,11 +1,20 @@
 # TUF's Code Editor
 
+**Result in PC**
+https://github.com/ajaymahiwal/TUF-CodeEditor/assets/111448939/27f1c823-6902-4251-b673-7e69b378eab0
+
+**Result in Mobile Phone**
+https://github.com/ajaymahiwal/TUF-CodeEditor/assets/111448939/2376f8ad-09c7-4e7a-b272-d45a73dbbcc5
+
+
+
 ## Overview
 TUF's Code Editor is a versatile platform for showcasing code submissions and their corresponding outputs. This project features two primary functionalities: code display and code submission.
 
 ## Features
 - **Code Display:** Enables users to view submitted code snippets along with their outputs and relevant details.
 - **Code Submission:** Provides a user-friendly interface for submitting new code snippets to be displayed on the platform.
+- **Custom Error Handling** 
 
 ## Technology Stack
 - **Express JS:** Backend framework for handling server-side logic and routing.
